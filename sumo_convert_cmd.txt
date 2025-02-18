@@ -1,0 +1,24 @@
+```netconvert  --osm-files map.osm -o map.net.xml```
+
+```polyconvert --osm-files map.osm --net-file map.net.xml --type-file osmPolyconvert.typ.xml -o map.poly.xml```
+
+```python3 $SUMO_HOME/tools/randomTrips.py -n map.net.xml -r map.rou.xml -e 400 -l```
+
+```touch map.sumo.cfg```
+```<configuration>
+    <input>
+        <net-file value="map.net.xml"/>
+        <route-files value="map.rou.xml"/>
+        <additional-files value="map.poly.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end vsumolue="200"/>
+        <step-length value="0.1"/>
+    </time>
+</configuration>```
+
+
+'''sumo -c map.sumo.cfg --fcd-output map.sumo.xml'''
+
+```python3 $SUMO_HOME/tools/traceExporter.py --fcd-input map.sumo.xml --ns2config-output map.tcl --ns2activity-output activity.tcl --ns2mobility-output mobility.tcl```
