@@ -1,5 +1,0 @@
-for {set i 0} {$i < $val(nnaodv)} {incr i} {
-    $node_($i) set X_ [expr rand()*$val(x)]
-    $node_($i) set Y_ [expr rand()*$val(y)]
-    $node_($i) set 0
-}

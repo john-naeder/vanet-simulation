@@ -12,9 +12,10 @@ set val(ifqlen)         100                        ;# max packet in ifq
 set val(nn)             118                        ;# number of mobilenodes
 set val(rp)             AODV                       ;# routing protocol
 set packetSize 			1024        			   
-set FloodStart 			10.0         			   ;# Thời gian bắt đầu tấn công (10 giây)
+set FloodStart 			100.0         			   ;# Thời gian bắt đầu tấn công (10 giây)
 set FloodInterval 		0.1         			   ;# Khoảng cách gửi gói tin (0.1 giây)
-set FloodEnd 			100.0         			   ;# Thời gian kết thúc tấn công (20 giây)
+set FloodEnd 			110.0         			   ;# Thời gian kết thúc tấn công (20 giây)
+set simulationTime 		300.0         			   ;# Thời gian mô phỏng (150 giây)
 set opt(x) 				4774
 set opt(y) 				1659
 set MESSAGE_PORT		1234
@@ -112,24 +113,25 @@ source mobility.tcl
 
 $node_(0) shape box
 $node_(0) color blue
-$node_(51) shape box
-$node_(51) color green
+$node_(22) shape box
+$node_(22) color green
 
-for {set i 10} {$i <= 90} {incr i} {
+for {set i 1} {$i <= 70} {incr i 2} {
     $node_($i) shape circle
     $node_($i) color red
 }
 
 $ns_ at 0.0 "$node_(0) color blue"
-$ns_ at 0.0 "$node_(51) color green"
+$ns_ at 0.0 "$node_(22) color green"
 
-for {set i 10} {$i <= 90} {incr i} {
+for {set i 1} {$i <= 70} {incr i 2} {
     $ns_ at 90.0 "$node_($i) color red"
 }
-
-for {set time 0.2} {$time <= 3.0} {set time [expr $time + 0.2]} {
-        for {set i 10} {$i <= 90} {incr i} {
-        set send_time [expr $FloodStart + $time + 0.2]
+set currentAttackTime $FloodStart
+for {set time 0.2} {$currentAttackTime <= $FloodEnd} {set time [expr $time + 0.2]} {
+    set currentAttackTime [expr $FloodStart + $time]
+    for {set i 1} {$i <= 70} {incr i 2} {
+        set send_time [expr $FloodStart + $time]
         $ns_ at $send_time "$a($i) send_message $packetSize 1 {first message} $MESSAGE_PORT"
 
         set send_time [expr $FloodStart + $time + 0.4]
@@ -140,14 +142,12 @@ for {set time 0.2} {$time <= 3.0} {set time [expr $time + 0.2]} {
     }
 }
 
-
-
 # Setup traffic flow between nodes
 set tcp [new Agent/TCP]
 $tcp set class_ 2
 set sink [new Agent/TCPSink]
 $ns_ attach-agent $node_(0) $tcp
-$ns_ attach-agent $node_(51) $sink
+$ns_ attach-agent $node_(22) $sink
 $ns_ connect $tcp $sink
 set ftp [new Application/FTP]
 $ftp attach-agent $tcp
@@ -156,10 +156,12 @@ $ns_ at 10.0 "$ftp start"
 # Tell nodes when the simulation ends
 #
 for {set i 0} {$i < $val(nn) } {incr i} {
-    $ns_ at 150.0 "$node_($i) reset";
+    $ns_ at $simulationTime "$node_($i) reset";
 }
-$ns_ at 150.0 "stop"
-$ns_ at 150.01 "puts \"NS EXITING...\" ; $ns_ halt"
+
+$ns_ at $simulationTime "stop"
+set timePrintEndMessage [expr $simulationTime + 0.01]
+$ns_ at $timePrintEndMessage "puts \"NS EXITING...\" ; $ns_ halt"
 proc stop {} {
     global ns_ tracefd
     $ns_ flush-trace

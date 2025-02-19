@@ -1,6 +1,0 @@
-for {set i 0} {$i < $val(nnaodv)} {incr i} {
-    $node_($i) set X_ [expr ($i % 7)*100 + 100]
-    $node_($i) set Y_ [expr ($i / 7)*50 + 50]
-    $node_($i) set 0
-    $ns_ initial_node_pos $node_($i) 30
-}

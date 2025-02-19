@@ -1,8 +1,0 @@
-set val(speed) 50 
-for {set i 1} {$i < $val(nnaod)} {incr i} {
-    set xr [expr rand()*$val(x)]
-    set yr [expr rand()*$val(y)]
-    set sr [expr rand()*$val(speed)]
-    set tr [expr rand()*$val(cstop)]
-    $ns_ at $tr "$node_($i) setdest $xr $yr $sr
-}
