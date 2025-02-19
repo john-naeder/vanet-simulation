@@ -1,4 +1,5 @@
 import re
+import sys
 
 def parse_trace_file(filename):
     sent_packets = {}
@@ -71,7 +72,12 @@ def calculate_metrics(sent_packets, received_packets, packet_delays, total_bytes
 
 # Main function
 def main():
-    trace_file = 'ghaziabad.tr'  # Replace with your trace file name
+    # Check if a filename is provided as a command-line argument
+    if len(sys.argv) < 2:
+        print("Usage: python3 <file.py> <trace_file>")
+        sys.exit(1)
+    
+    trace_file = sys.argv[1]  # Get the trace file name from the command-line argument
     metrics_data = parse_trace_file(trace_file)
     metrics = calculate_metrics(*metrics_data)
 
@@ -81,4 +87,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -22,3 +22,11 @@
 '''sumo -c map.sumo.cfg --fcd-output map.sumo.xml'''
 
 ```python3 $SUMO_HOME/tools/traceExporter.py --fcd-input map.sumo.xml --ns2config-output map.tcl --ns2activity-output activity.tcl --ns2mobility-output mobility.tcl```
+
+
+Công cụ sử dụng để thực hiện mô phỏng 
+- SUMO: mô phỏng môi trường đô thị dựa trên thực tế 
+- NS2: công cụ tạo kịch bản mô phỏng và tạo tương tác mạng cho mô phỏng 
+- NAM: công cụ visualize các agent và entity sau khi được trích xuất từ môi trường SUMO và dựa theo kịch bản 
+    TCL được thiết lập để mô phỏng 
+- AWK: Công cụ trích xuất dữ liệu từ xml 

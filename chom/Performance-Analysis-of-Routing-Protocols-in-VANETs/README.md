@@ -1,5 +1,5 @@
 # Performance-Analysis-of-Routing-Protocols-in-VANETs
-Analysis of AODV, DSDR, LAR, DSR and ZRP using OSM, SUMO, and NS2
+Analysis of SMA2AODV, DSDR, LAR, DSR and ZRP using OSM, SUMO, and NS2
 
 # Pre-Requistes 
 This project has been done in a linux environment.  <br />
@@ -42,10 +42,10 @@ sudo cp ns235-lar /usr/local/bin/
 
 # Protocols Execution
 All the protocols have the same execution <br />
-Lets take AODV for example: 
+Lets take SMA2AODV for example: 
 ## To view the SUMO file exported
 ```
-cd AODV
+cd SMA2AODV
 sumo-gui ghaziabad.sumo
 ```
 

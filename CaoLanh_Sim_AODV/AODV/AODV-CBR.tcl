@@ -1,6 +1,6 @@
 set ns [new Simulator]
 # Create a nam trace datafile.
-set namfile [open AODV_final_cbr.nam w]
+set namfile [open SMA2AODV_final_cbr.nam w]
 
 set Time [open time.tr w]
 set TIME_start [clock clicks -milliseconds]
@@ -73,7 +73,7 @@ set b25 [open b25.tr w]
 
 $ns namtrace-all $namfile
 # ----- Setup wireless environment. ----
-set wireless_tracefile [open AODV_final_cbr.trace w]
+set wireless_tracefile [open SMA2AODV_final_cbr.trace w]
 set topography [new Topography]
 $ns trace-all $wireless_tracefile
 $ns namtrace-all-wireless $namfile 3000  1600 
@@ -84,7 +84,7 @@ global TN
 set TN 100
 set god_ [create-god $TN]
 #global node setting
-$ns node-config -adhocRouting AODV \
+$ns node-config -adhocRouting SMA2AODV \
 	             -llType LL \
 		     -macType Mac/802_11\
 		     -ifqLen 100 \
@@ -522,7 +522,7 @@ proc finish {} {
         #exec xgraph -M -bg white -fg blue -t "Time VS Bandwidth" -x "Time" -y "Bandwidth"   -geometry 700*800 &
         #exec xgraph th.tr -M -bg white -fg blue -t "Time VS Throughput" -x "Time" -y "Throughput" -geometry 700*800  & 
         
-	#exec nam -r 100.000000us AODV_final_cbr.nam &	
+	#exec nam -r 100.000000us SMA2AODV_final_cbr.nam &	
 	exit 0
 	}
 #call the finish procedure after 3 miniutes of simulated time

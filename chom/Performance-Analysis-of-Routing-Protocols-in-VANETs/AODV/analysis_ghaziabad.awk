@@ -6,12 +6,12 @@
 # M 10.00000 2 (1932.14, 611.44, 0.00), (1932.56, 611.51), 4.24
 # s 10.000000000 _0_ AGT  --- 0 tcp 40 ... 
 # r 10.000000000 _0_ AGT  --- 0 tcp 40 ...
-# r 10.037569819 _41_ RTR  --- 0 AODV 48 ... (REQUEST)
-# r 10.039374285 _105_ RTR  --- 0 AODV 44 ... (REPLY)
+# r 10.037569819 _41_ RTR  --- 0 SMA2AODV 48 ... (REQUEST)
+# r 10.039374285 _105_ RTR  --- 0 SMA2AODV 44 ... (REPLY)
 #
 # Ghi chú:
 #  - Với dữ liệu AGT/tcp tính số gói gửi, nhận, từ đó tính PDR.
-#  - Gói định tuyến (AODV) tính riêng để ước tính NRL.
+#  - Gói định tuyến (SMA2AODV) tính riêng để ước tính NRL.
 #  - Các sự kiện di chuyển (M) chỉ đếm.
 #  - Thêm cả tính độ trễ End-to-End (EtE) theo thứ tự gửi – nhận.
 #
@@ -57,8 +57,8 @@ BEGIN {
                 delayCount++;
             }
         }
-        # Gói định tuyến AODV
-        if($7=="AODV")
+        # Gói định tuyến SMA2AODV
+        if($7=="SMA2AODV")
             routing_packets++;
     }
 

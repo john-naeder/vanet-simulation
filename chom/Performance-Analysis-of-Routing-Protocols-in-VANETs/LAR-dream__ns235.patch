@@ -2415,7 +2415,7 @@ diff -Naur ns-2.35-orig/dream/dream.tcl ns-2.35/dream/dream.tcl
 +set opt(nam)            brad.nam   ;# nam trace file
 +set opt(tf)     "./sendDataFile.dat"
 +#set opt(mf)     "./scen-300x600-50-10-10-00"
-+set opt(adhocRouting)   AODV
++set opt(adhocRouting)   SMA2AODV
 +set opt(nn)             50             ;# how many nodes are simulated
 +set opt(stop)           20.0            ;# simulation time
 +
@@ -2496,7 +2496,7 @@ diff -Naur ns-2.35-orig/dream/dream.tcl ns-2.35/dream/dream.tcl
 +add-packet-header TCP 
 +add-packet-header Common 
 +add-packet-header Dream
-+add-packet-header AODV
++add-packet-header SMA2AODV
 +add-packet-header Flags
 +add-packet-header LL
 +add-packet-header Mac
@@ -2869,7 +2869,7 @@ diff -Naur ns-2.35-orig/lar/box.tcl ns-2.35/lar/box.tcl
 +set val(x)          300
 +set val(y)          600
 +set val(ifqlen)     50
-+set val(rp)         AODV
++set val(rp)         SMA2AODV
 +#set val(rp)         DSR
 +#set val(rp)         DSDV
 +set val(nn)         50
@@ -6203,7 +6203,7 @@ diff -Naur ns-2.35-orig/lar/step.tcl ns-2.35/lar/step.tcl
 +set val(x)          300
 +set val(y)          600
 +set val(ifqlen)     50
-+set val(rp)         AODV
++set val(rp)         SMA2AODV
 +#set val(rp)         DSR
 +#set val(rp)         DSDV
 +set val(nn)         50

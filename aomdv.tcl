@@ -2,7 +2,7 @@
 # Marco Fiore's Patch
 # ------------------------------------------------------------------------------
 #remove-all-packet-headers                                                     ;# removes all except common
-#add-packet-header IP LL Mac AODV AOMDV ATR DSDV DSR OLSR UDP TCP CBR FTP      ;# needed headers
+#add-packet-header IP LL Mac SMA2AODV AOMDV ATR DSDV DSR OLSR UDP TCP CBR FTP      ;# needed headers
 Mac/802_11 set CWMin_                 31
 Mac/802_11 set CWMax_                 1023
 Mac/802_11 set SlotTime_              0.000020                     ;# 20us
